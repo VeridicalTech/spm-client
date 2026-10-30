@@ -128,8 +128,8 @@ assert verified.source_id == ref.source_id
 ```
 
 Verification needs no credential and no call back to the server that minted the
-handle. See `docs/sdk/EVIDENCE_VERIFICATION.md` for what it does and does not
-prove.
+handle. See [Evidence verification](https://docs.spmos.ai/python-sdk#verification)
+for what it does and does not prove.
 
 ## Two error bases
 
