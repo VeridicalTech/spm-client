@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spm-client"
+version = "0.2.1"
+description = "SPM client: hosted memory plane (remember/recall/read/delete/status), request receipts, the OpenAI-compatible gateway, and offline verification of signed evidence."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "LicenseRef-Proprietary"
+authors = [
+  { name = "Veridical Tech, Inc." },
+]
+dependencies = [
+  "httpx>=0.27,<1",
+]
+
+[project.optional-dependencies]
+# Verifying an Ed25519 evidence handle offline needs a verifier. It is optional
+# on purpose: the client itself only needs httpx, and an HS256 handle is
+# verifiable with the stdlib alone.
+evidence = ["cryptography>=42,<46"]
+integrations = ["openai>=1,<3", "anthropic>=0.20,<1"]
+test = ["pytest>=8,<10", "respx>=0.21,<1", "httpx>=0.27,<1", "cryptography>=42,<46"]
+dev = ["pytest>=8,<10", "pytest-asyncio>=0.24,<2", "respx>=0.21,<1", "cryptography>=42,<46", "openai>=1,<3", "anthropic>=0.20,<1"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["spm_client*"]
